@@ -268,6 +268,7 @@ function addTeam(){
         <input type="color" onchange="changeColor(${id}, this.value)">
         <div class="score" id="score${id}">0</div>
         <button class="addPoints" onclick="changeScore(${id},10)">+10</button>
+        <button class="addPoints" onclick="changeScore(${id},5)">+5</button>
         <button class="removePoints" onclick="changeScore(${id},-10)">-10</button>
     `;
 
@@ -399,7 +400,6 @@ function toggleOverlay(){
 }
 
 function updateTimer(){
-    function updateTimer(){
     let hrs = String(Math.floor(remaining / 3600)).padStart(2,'0');
     let min = String(Math.floor((remaining % 3600) / 60)).padStart(2,'0');
     let sec = String(remaining % 60).padStart(2,'0');
@@ -407,21 +407,6 @@ function updateTimer(){
     let timerEl = document.getElementById('timer');
     timerEl.innerText = hrs + ":" + min + ":" + sec;
 
-    // 🔥 COR DINÂMICA (mantém igual)
-    if(totalTime > 0){
-        let percent = remaining / totalTime;
-
-        if(percent > 0.5){
-            timerEl.style.color = '#00ff88';
-        }
-        else if(percent > 0.25){
-            timerEl.style.color = '#ffd600';
-        }
-        else{
-            timerEl.style.color = '#ff1744';
-        }
-    }
-}
     // 🔥 COR DINÂMICA
     if(totalTime > 0){
         let percent = remaining / totalTime;
@@ -437,6 +422,7 @@ function updateTimer(){
         }
     }
 }
+
 function resetAll(){
     clearInterval(interval);
     interval = null;
